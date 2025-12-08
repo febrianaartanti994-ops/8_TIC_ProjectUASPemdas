@@ -171,8 +171,8 @@ void loginUser(User &user)
 void displayMainMenu() {
     cout << "\n";
     cout << "  +========================================+\n";
-    cout << "  |      SISTEM LOGIN & REGISTER           |\n";
-    cout << "  |          Selamat Datang!               |\n";
+    cout << "  |        LOGIN &REGISTER SYSTEM          |\n";
+    cout << "  |               WELCOME!                 |\n";
     cout << "  +========================================+\n\n";
     
     cout << "  [*] MAIN MENU\n";
