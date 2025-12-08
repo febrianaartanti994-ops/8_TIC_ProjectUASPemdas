@@ -15,30 +15,66 @@ struct  User
     
 };
 
+void pauseProgram()
+{
+    cout << "Press Enter to continue...";
+    cin.ignore();
+    cin.get();
+}
+
+bool usernameExists(const string &username) {
+    ifstream file("user_data.txt");
+    string fileUsername, filePassword;
+
+    while (getline(file, fileUsername) && getline(file, filePassword)) {
+        if (fileUsername == username) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
 void registerUser(User &user)
 {
     cout << "\n====Register====\n";
 
+    cin.ignore();
+    bool valid = false;
+
+    while (!valid)  // selama belum valid, terus ulangi
+    {
         cout << "Enter username: ";
-        cin.ignore();
         getline(cin, user.username);
+
+        if (usernameExists(user.username))
+        {
+            cout << "Username already exists! Please choose another one.\n";
+        }
+        else
+        {
+            valid = true;
+        }
+    }
 
     do {
         cout << "Enter 10 character password: \n";
         cin >> user.password;
+
         if (user.password.length() != 10)
             cout << "Password must be exactly 10 characters!\n";
+
     } while (user.password.length() != 10);
 
     cout << "\n=== Registration Complete ===\n";
     cout << "Saved Username : " << user.username << "\n";
-        cout << "  ✓ Password : ";
+    cout << "  ✓ Password : ";
     
-    for (int i = 0; i < user.password.length(); i++) {
-        cout << "*";  
-    }
+    for (int i = 0; i < user.password.length(); i++)
+        cout << "*";
+    
     cout << "\n\n";
 }
+
 
 
 void savedata(User &user)
@@ -132,7 +168,20 @@ void loginUser(User &user)
     }
 }
 
-
+void displayMainMenu() {
+    cout << "\n";
+    cout << "  +========================================+\n";
+    cout << "  |      SISTEM LOGIN & REGISTER           |\n";
+    cout << "  |          Selamat Datang!               |\n";
+    cout << "  +========================================+\n\n";
+    
+    cout << "  [*] MAIN MENU\n";
+    cout << "  \n";
+    cout << "      [1] Register New Account\n";
+    cout << "      [2] Login\n";
+    cout << "      [3] Exit\n\n";
+    cout << "  Choose an option (1-3): ";
+}
 
 int main()
 {
@@ -141,20 +190,19 @@ int main()
 
    do
    {
-    cout << "1. Register\n";
-    cout << "2. Login\n";
-    cout << "3. Exit\n";
-    cout << "Choose an option: ";
+    displayMainMenu();
     cin >> choice;
 
     if (choice == 1)
     {
         registerUser(user);
         savedata(user);
+        pauseProgram();
     }
     else if (choice == 2)
     {
         loginUser(user);
+        pauseProgram();
     }
     else if (choice == 3)
     {
