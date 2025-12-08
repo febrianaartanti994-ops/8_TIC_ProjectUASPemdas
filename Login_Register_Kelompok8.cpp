@@ -41,7 +41,7 @@ void registerUser(User &user)
     cin.ignore();
     bool valid = false;
 
-    while (!valid)  // selama belum valid, terus ulangi
+    while (!valid)  
     {
         cout << "Enter username: ";
         getline(cin, user.username);
