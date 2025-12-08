@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct  User
+struct User
 {
     string username;
     string password;
@@ -12,7 +12,6 @@ struct  User
     string usernameInput;
     string passwordInput;
     char choice;
-    
 };
 
 void pauseProgram()
@@ -22,16 +21,19 @@ void pauseProgram()
     cin.get();
 }
 
-bool usernameExists(const string &username) {
+bool usernameExists(const string &username)
+{
     ifstream file("user_data.txt");
     string fileUsername, filePassword;
 
-    while (getline(file, fileUsername) && getline(file, filePassword)) {
-        if (fileUsername == username) {
-            return true; 
+    while (getline(file, fileUsername) && getline(file, filePassword))
+    {
+        if (fileUsername == username)
+        {
+            return true;
         }
     }
-    return false; 
+    return false;
 }
 
 void registerUser(User &user)
@@ -41,7 +43,7 @@ void registerUser(User &user)
     cin.ignore();
     bool valid = false;
 
-    while (!valid)  
+    while (!valid)
     {
         cout << "Enter username: ";
         getline(cin, user.username);
@@ -56,7 +58,8 @@ void registerUser(User &user)
         }
     }
 
-    do {
+    do
+    {
         cout << "Enter 10 character password: \n";
         cin >> user.password;
 
@@ -68,14 +71,12 @@ void registerUser(User &user)
     cout << "\n=== Registration Complete ===\n";
     cout << "Saved Username : " << user.username << "\n";
     cout << "  ✓ Password : ";
-    
+
     for (int i = 0; i < user.password.length(); i++)
         cout << "*";
-    
+
     cout << "\n\n";
 }
-
-
 
 void savedata(User &user)
 {
@@ -98,7 +99,8 @@ void forgotPassword(User &user)
     cout << "\n====Forgot Password====\n";
 
     ifstream inFile("user_data.txt");
-    if (!inFile.is_open()) {
+    if (!inFile.is_open())
+    {
         cout << "Error loading data.\n";
         return;
     }
@@ -107,19 +109,23 @@ void forgotPassword(User &user)
     string newContent = "";
     string oldPassword = "";
     bool userFound = false;
-    while (getline(inFile, fileUsername) && getline(inFile, filePassword)) {
-        if (fileUsername == user.usernameInput) {
-            oldPassword = filePassword;  
+    while (getline(inFile, fileUsername) && getline(inFile, filePassword))
+    {
+        if (fileUsername == user.usernameInput)
+        {
+            oldPassword = filePassword;
             userFound = true;
         }
     }
     inFile.close();
 
-    if (!userFound) {
+    if (!userFound)
+    {
         cout << "Username not found!\n";
         return;
     }
-    do {
+    do
+    {
         cout << "Enter NEW 10 character password (must be different from old one): \n";
         cin >> user.forgotpassword;
 
@@ -132,7 +138,8 @@ void forgotPassword(User &user)
 
     ifstream fileRead("user_data.txt");
     newContent = "";
-    while (getline(fileRead, fileUsername) && getline(fileRead, filePassword)) {
+    while (getline(fileRead, fileUsername) && getline(fileRead, filePassword))
+    {
         if (fileUsername == user.usernameInput)
             newContent += fileUsername + "\n" + user.forgotpassword + "\n";
         else
@@ -146,7 +153,6 @@ void forgotPassword(User &user)
 
     cout << "Password reset successful! Your new password is: " << user.forgotpassword << "\n";
 }
-
 
 void loginUser(User &user)
 {
@@ -194,13 +200,14 @@ void loginUser(User &user)
     }
 }
 
-void displayMainMenu() {
+void displayMainMenu()
+{
     cout << "\n";
     cout << "  +========================================+\n";
     cout << "  |        LOGIN &REGISTER SYSTEM          |\n";
     cout << "  |               WELCOME!                 |\n";
     cout << "  +========================================+\n\n";
-    
+
     cout << "  [*] MAIN MENU\n";
     cout << "  \n";
     cout << "      [1] Register New Account\n";
@@ -214,31 +221,30 @@ int main()
     User user;
     int choice;
 
-   do
-   {
-    displayMainMenu();
-    cin >> choice;
+    do
+    {
+        displayMainMenu();
+        cin >> choice;
 
-    if (choice == 1)
-    {
-        registerUser(user);
-        savedata(user);
-        pauseProgram();
-    }
-    else if (choice == 2)
-    {
-        loginUser(user);
-        pauseProgram();
-    }
-    else if (choice == 3)
-    {
-        cout << "Exiting program... Goodbye!\n";
-    }
-    else
-    {
-        cout << "Invalid choice! Please choose again.\n";
-    }
-}
-   while (choice != 3);
+        if (choice == 1)
+        {
+            registerUser(user);
+            savedata(user);
+            pauseProgram();
+        }
+        else if (choice == 2)
+        {
+            loginUser(user);
+            pauseProgram();
+        }
+        else if (choice == 3)
+        {
+            cout << "Exiting program... Goodbye!\n";
+        }
+        else
+        {
+            cout << "Invalid choice! Please choose again.\n";
+        }
+    } while (choice != 3);
     return 0;
 }
