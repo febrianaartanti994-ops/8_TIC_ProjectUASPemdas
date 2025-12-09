@@ -67,15 +67,14 @@ void registerUser(User &user)
             cout << "Password must be exactly 10 characters!\n";
 
     } while (user.password.length() != 10);
+}
 
-    cout << "\n=== Registration Complete ===\n";
-    cout << "Saved Username : " << user.username << "\n";
-    cout << "  ✓ Password : ";
-
-    for (int i = 0; i < user.password.length(); i++)
+void displayUserData(const User *puser)
+{
+    cout << "Username: " << puser->username << "\n";
+    cout << "Password: ";
+    for (int i = 0; i < puser->password.length(); i++)
         cout << "*";
-
-    cout << "\n\n";
 }
 
 void savedata(User &user)
@@ -204,16 +203,21 @@ void displayMainMenu()
 {
     cout << "\n";
     cout << "  +========================================+\n";
-    cout << "  |        LOGIN &REGISTER SYSTEM          |\n";
+    cout << "  |        LOGIN & REGISTER SYSTEM         |\n";
     cout << "  |               WELCOME!                 |\n";
     cout << "  +========================================+\n\n";
 
-    cout << "  [*] MAIN MENU\n";
-    cout << "  \n";
-    cout << "      [1] Register New Account\n";
-    cout << "      [2] Login\n";
-    cout << "      [3] Exit\n\n";
-    cout << "  Choose an option (1-3): ";
+    cout << "  [*] MAIN MENU\n\n";
+    string menuOptions[3] = {
+        "Register New Account",
+        "Login",
+        "Exit"};
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "      [" << (i + 1) << "] " << menuOptions[i] << "\n";
+    }
+    cout << "\n  Choose an option (1-3): ";
 }
 
 int main()
@@ -230,6 +234,7 @@ int main()
         {
             registerUser(user);
             savedata(user);
+            displayUserData(&user);
             pauseProgram();
         }
         else if (choice == 2)
