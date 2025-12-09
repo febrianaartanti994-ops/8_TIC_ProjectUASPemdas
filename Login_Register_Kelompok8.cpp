@@ -16,7 +16,7 @@ struct User
 
 void pauseProgram()
 {
-    cout << "Press Enter to continue...";
+    cout << "\nPress Enter to continue...";
     cin.ignore();
     cin.get();
 }
@@ -60,6 +60,7 @@ void registerUser(User &user)
 
     do
     {
+
         cout << "Enter 10 character password: \n";
         cin >> user.password;
 
