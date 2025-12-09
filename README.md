@@ -1,4 +1,6 @@
-# 🎯 Projek UAS - Pemrograman Dasar
+<h1 align="center">
+🎯 Projek UAS - Pemrograman Dasar
+</h1>
 
 <div align="center">
 
