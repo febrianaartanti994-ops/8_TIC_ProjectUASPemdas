@@ -5,8 +5,8 @@
 <div align="center">
 
 ![Status](https://img.shields.io/badge/Status-%20Finish-D38C9D?style=flat-square)
-![Team](https://img.shields.io/badge/Team-Kelompok%208-D38C9D?style=flat-square)
-![Semester](https://img.shields.io/badge/Semester-Ganjil%202025-D38C9D?style=flat-square)
+![Kelompok](https://img.shields.io/badge/Kelompok-%208-D38C9D?style=flat-square)
+![Kelas](https://img.shields.io/badge/Kelas-TIC%202025-D38C9D?style=flat-square)
 
 **Nama Project:** Login, Register, dan Forgot password
 
