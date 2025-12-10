@@ -11,6 +11,8 @@ struct User
     string forgotpassword;
     string usernameInput;
     string passwordInput;
+    string fileUsername;
+    string filePassword;
     char choice;
 };
 
@@ -60,10 +62,8 @@ void registerUser(User &user)
 
     do
     {
-
         cout << "Enter 10 character password: \n";
         cin >> user.password;
-
         if (user.password.length() != 10)
             cout << "Password must be exactly 10 characters!\n";
 
@@ -216,7 +216,7 @@ void displayMainMenu()
 
     for (int i = 0; i < 3; i++)
     {
-        cout << "      [" << (i++) << "] " << menuOptions[i] << "\n";
+        cout << "      [" << (i + 1) << "] " << menuOptions[i] << "\n";
     }
     cout << "\n  Choose an option (1-3): ";
 }
